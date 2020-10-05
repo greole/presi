@@ -1,0 +1,112 @@
+* S1 Motivation (2 min)
+
+Good morning and welcome to my presentation, today with probably unusual topic:
+
+Simulation of turbulent flows.
+
+Fluid flows are everywhere, from the very large scales of oceans and atmospheric
+flows to smaller scales in the plasma of our cells, and technical applications
+like airplanes, car, turbines and so on. Thus, we have strong reasons to study
+fluid flows. Furthermore, engineers want to predict fluid flows using
+simulations during the design process, so that we can avoid building expensive
+and time consuming prototypes.
+
+However, as I will demonstrate with this presentation turbulence poses a major
+challenge for simulation.
+
+Figures
+ - [ ] Ocean
+ - [ ] Wheater
+ - [ ] Airplane
+
+* S2 Content
+   
+So this is how we will approach this topic
+
+  1. Steps to Simulation
+  2. What is turbulence
+  3. Consequences of turbulence
+  4. Basic Approaches
+  5. Closure
+
+* S3 Steps to Simulation
+  
+For the simulation of fluid flows we solve the Navier Stokes Equation by means
+of numerical methods. The main steps are given here for the incompressible
+momentum equation. The main steps are
+
+   1. linearisation of 1. by splitting uu in F*u
+   2. Integration of 1. over the cell surfaces of our computational grid and
+      application of Gauss theorem to reduce the order of the PDE
+   3. interpolation of face values from center values
+   4. boundary values
+   5. matrix coefficients
+   6. Solve Ax=b by suitable method
+
+Figures
+ - [ ] Grid
+
+* S4 What is turbulence
+  
+Under certain conditions an ordered, regular (laminar) flow undergoes a transi-
+tion to chaotic and irregular behaviour, the latter is called turbulent flow.
+
+Lumley, gives the following main characterics of turbulent flows.
+ 
+  - Irregularity
+  - Diffusivity
+  - Dissipative
+  - Large Reynolds numbers
+  - 3D and transient
+    
+Figures
+ - [ ] Turbulence Transition
+
+* S5 Vortices
+  
+Next, lets talk about the main component of turbulence, the vortex or eddy.
+
+A vortex is a region of fluid rotating around an axis. If two vortices are close
+enough to each other, the vortices can in different ways interact leading to
+break up and generation of smaller vortices. The smaller vortices then also
+interact and decay to smaller vortices and so on.
+
+This is the main mechanism of the energy cascade. Shown in this picture here.
+Here starting from the largest scales on the right side, energy is transported
+to the smaller and smaller scales on the left until we see a sudden decrease of
+energy for very large wave numbers. Here we are at the so called Kolmogorov
+length scales. Looking at the Reynolds numbers we see that at smaller and
+smaller length scales the influence of the viscous, counteracting forces becomes
+larger and larger. Until all disturbances are completely damped.
+
+From dimensional analysis we know that the ratio between smallest to largest
+depends on the Reynoldsnumber to the -3/4 power. Which seems OK but
+unfortunately that means that the total number of cells and timesteps needed for
+a simulation depends on Re to 9/4 power.
+
+* S6 Consequence of turbulence
+  
+Now, lets see how this effects our capabilities to simulate turbulent flows.
+
+This paper from 2015 investigates a turbulent pipe flow. They conducted the
+simulation on 4906 CPUs on 30x10^9 Grid, generating 1TB of data per ts.
+
+So what did they achieve here. First, they did a nondimensional simulation, so
+to make it bit more descriptive I denormalised it by considering air and a pipe
+of 0.1m in diameter. This would mean we have a simulation of a pipe of one meter
+length and 20 m/s bulk velocity. I think this shows clearly the challenges for
+simulation of turbulence of lets say a full airplane for which velocities are
+much higher, the scales are larger and we have smaller viscosities.
+
+* S7 Basic Approaches RANS 
+
+OK, I think you understand the challenges of the direct simulation of turbulence
+a bit better. But especial in engineering contexts the engineer is not intested
+in instantaneous solutions but in integral quantities like drag coefficients,
+heat transfered and so on. Thus, instead of solving the instantaneous equations
+and average of the solution one might consider to average the equation and solve
+for an average quantity. This is called Reynolds Averaged Navier Stokes or RANS.
+
+It is important to note that the RANS approach does not strictly define how to
+average but give rules which have to hold for an averaging operator to become a
+RANS average.

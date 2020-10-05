@@ -1,0 +1,135 @@
+
+% This text is proprietary.
+% It's a part of presentation made by myself.
+% It may not used commercial.
+% The noncommercial use such as private and study is free
+% Sep. 2005 
+% Author: Sascha Frank 
+% University Freiburg 
+% www.informatik.uni-freiburg.de/~frank/
+
+
+\documentclass{beamer}
+
+\usepackage{color}
+\newcommand{\avg}[1]{\overline{#1}}
+\newcommand{\fluct}[1]{#1'}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+
+\begin{document}
+\title{Simulation of Turbulent Flows}   
+\author{Gregor Olenik} 
+\date{\today} 
+
+\frame{\titlepage} 
+
+\section{Section no.1} 
+\frame{\frametitle{Content} 
+\begin{itemize}
+\item Fundamentals of Simulation
+\item What is turbulence  
+\item Consequences of Turbulence
+\item Basic Modelling Approaches
+\end{itemize} 
+}
+
+\subsection{Lists I}
+\frame{\frametitle{Fundamentals Simulation}
+
+  \begin{equation}
+  \frac{\partial u_i}{\partial t} + u_j \frac{\partial u_i}{\partial x_j}
+  = f_i 
+  - \frac{1}{\rho} \frac{\partial p}{\partial x_i}
+  + \nu \frac{\partial^2 u_i}{\partial x_j \partial x_j}
+  \end{equation}
+
+  \begin{equation}
+  \frac{\partial \bar{u_i}}{\partial t} 
+  +  \bar{u_j}\frac{\partial \bar{u_i} }{\partial x_j}
+  = \bar{f_i}
+  - \frac{1}{\rho}\frac{\partial \bar{p}}{\partial x_i}
+  + \nu \frac{\partial^2 \bar{u_i}}{\partial x_j \partial x_j}
+  - \red{\frac{\partial \overline{u_i^\prime u_j^\prime }}{\partial x_j}}
+  \end{equation}
+
+\begin{itemize}
+\item Linearisation
+\item Integration over cell surfaces of computational grid
+\item Application of Gauss theorem
+\item Interpolation of face values
+\item Setup of boundary conditions
+\item Assembly of matrix coefficients
+\end{itemize} 
+}
+
+\frame{\frametitle{What is turbulence}
+  \cite{tennekes1972}
+\begin{itemize}
+\item Irregularity
+\item Diffusivity
+\item Dissipative
+\item Large Reynolds numbers, $\text{Re}=uL/\nu=$ momentum/viscous forces
+\item 3D and transient
+\end{itemize} 
+}
+
+\frame{\frametitle{The Role of Vortices}
+  \begin{itemize}
+  \item  $\eta/L=\text{Re}^{-3/4}$
+  \item  $n_{\text{Cells}} = f(\text{Re}^{9/4})$, $n_{\text{TS}} = f(\text{Re}^{9/4})$
+  \end{itemize}
+}
+
+
+\frame{\frametitle{Consequences of Turbulence }
+\begin{itemize}
+\item Introduction to  \LaTeX \pause 
+\item Course 2 \pause 
+\item Termpapers and presentations with \LaTeX \pause 
+\item Beamer class
+\end{itemize}
+}
+
+\section{Section no.3} 
+\subsection{Tables}
+\frame{\frametitle{Tables}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Date} & \textbf{Instructor} & \textbf{Title} \\
+\hline
+WS 04/05 & Sascha Frank & First steps with  \LaTeX  \\
+\hline
+SS 05 & Sascha Frank & \LaTeX \ Course serial \\
+\hline
+\end{tabular}}
+
+
+\frame{\frametitle{Tables with pause}
+\begin{tabular}{c c c}
+A & B & C \\ 
+\pause 
+1 & 2 & 3 \\  
+\pause 
+A & B & C \\ 
+\end{tabular} }
+
+
+\section{Section no. 4}
+\subsection{blocs}
+\frame{\frametitle{blocs}
+
+\begin{block}{title of the bloc}
+bloc text
+\end{block}
+
+\begin{exampleblock}{title of the bloc}
+bloc text
+\end{exampleblock}
+
+
+\begin{alertblock}{title of the bloc}
+bloc text
+\end{alertblock}
+}
+\end{document}
+
